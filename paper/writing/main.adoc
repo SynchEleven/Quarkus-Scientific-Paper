@@ -39,6 +39,10 @@ toc::[]
 
 <<<
 
+include::abstract/main.adoc[]
+
+<<<
+
 :sectnums:
 
 include::title/about-quarkus.adoc[]
@@ -54,6 +58,10 @@ include::title/introduction-to-quarkus.adoc[]
 <<<
 
 include::chapter2/main.adoc[]
+
+<<<
+
+include::chapter3/main.adoc[]
 
 <<<
 

@@ -8,6 +8,6 @@ endif::[]
 '''
 
 [author={author}]
-== Introduction to Quarkus
+== The first project
 
 '''

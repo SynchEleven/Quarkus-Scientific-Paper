@@ -1,47 +1,42 @@
-=== Abstract
-Hello World
+=== Coming up
+The following sections will guide you through the process of setting up Quarkus and creating your first project. Both imperative and reactive programming styles will be covered, so you can choose the approach that best fits your needs. Links to further resources will be provided along the way, in case you want to dive deeper in any of the discussed topics.
 
-=== Heading 1
-Hello World
+=== Prerequisites
+- An IDE (Examples will use IntelliJ)
+- JDK 19 installed with JAVA_HOME configured
+- Maven 3.8.6
 
-==== My Cite
-This is a citation. cite:[CRAFT]
+=== Setup
 
-==== A formula
-latexmath:[\qquad \frac{a}{b} = 438]
+==== Quarkus CLI
+The Quarkus CLI is an optional tool that allows one to create, run and build Quarkus application easier. Every step done with the CLI could theoretically also be done inside of the IDE or with Maven.
 
-// A page break
-<<<
+===== Installation
+It can be installed via different package managers such as SDKMAN!, Homebrew, Chocolatey or Scoop. This example will use SDKMAN!. 
+Make sure that you have the JDK installed beofre installing the Quarkus CLI...
 
-==== A table
-.My new Table (Source: {author})
-[cols="1,1"]
-|===
-|Cell in column 1, row 1
-|Cell in column 2, row 1
-
-|Cell in column 1, row 2
-|Cell in column 2, row 2
-
-|Cell in column 1, row 3
-|Cell in column 2, row 3
-|===
-
-=== Heading 2
-Hello World
-
-=== Heading 3
-Hello World
-
-=== Heading X
-Hello World
-
-.My Python Code (Source: {author})
-[source,python,linenums=implicit]
+Install the CLI with this command
+[source,powershell,linenums=implicit]
 ----
-if True:
-    print("Hello World")
+sdk install quarkus
 ----
 
-=== Conclusion
-Hello World
+Once installed, you can check the installed version using the command
+[source,powershell,linenums=implicit]
+----
+quarkus --version
+2.15.1.Final
+----
+
+If an older version should be installed or you want to upgrade the current version, use this SDKMAN! command:
+[source,powershell,linenums=implicit]
+----
+sdk upgrade quarkus
+----
+
+Further information about the installation of Quarkus CLI link:https://quarkus.io/guides/cli-tooling[Docs - CLI tooling]
+
+==== Project setup
+The Quarkus project here will be created using IntelliJ, since it is in-built and allows easy management of the dependencies used. An alternative way, if you are using an IDE without an in-built Quarkus initializer, is the website https://code.quarkus.io/, where one can select the needed dependencies and it generates the bootstrapped project, just like the Spring Initializer for Spring projects. 
+
+=== Documentation

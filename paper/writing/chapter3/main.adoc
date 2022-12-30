@@ -1,0 +1,47 @@
+=== Abstract
+Hello World
+
+=== Heading 1
+Hello World
+
+==== My Cite
+This is a citation. cite:[CRAFT]
+
+==== A formula
+latexmath:[\qquad \frac{a}{b} = 438]
+
+// A page break
+<<<
+
+==== A table
+.My new Table (Source: {author})
+[cols="1,1"]
+|===
+|Cell in column 1, row 1
+|Cell in column 2, row 1
+
+|Cell in column 1, row 2
+|Cell in column 2, row 2
+
+|Cell in column 1, row 3
+|Cell in column 2, row 3
+|===
+
+=== Heading 2
+Hello World
+
+=== Heading 3
+Hello World
+
+=== Heading X
+Hello World
+
+.My Python Code (Source: {author})
+[source,python,linenums=implicit]
+----
+if True:
+    print("Hello World")
+----
+
+=== Conclusion
+Hello World

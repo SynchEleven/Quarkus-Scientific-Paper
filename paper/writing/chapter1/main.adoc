@@ -1,20 +1,32 @@
-=== About Quarkus
+=== Why it was created
+Java frameworks have traditionally been designed for monolithic applications with long start-up times and high memory requirements, but the emergence of cloud computing, containers, and Kubernetes has created new demands for cloud-native applications. With the Quarkus framework, they want to address these issues and create an environment, where developers can create and deploy cloud applications with ease. Their absolute goal is to make Java a leading platform in Kubernetes and serverless environments by delivering smaller packages that reduce the start-up times and have a low memory footprint, while offering developers a framework to address a wider range of distributed application architectures.
 
-==== Abstract
-Quarkus is a Kubernetes-native Java framework designed to make Java a leading platform in cloud-native application development. It is a lightweight, high-performance framework that allows developers to build cloud-native applications that can run either in a container or as a native binary on various platforms, including Linux, Windows, and MacOS. Quarkus aims to reduce the time it takes to develop and deploy Java applications, while also reducing the memory footprint and startup time of those applications. It achieves this through the use of innovative technologies such as ahead-of-time compilation, a small memory footprint runtime, and a fast boot time. Quarkus also integrates with popular frameworks and libraries, such as Eclipse MicroProfile, Hibernate, and Eclipse Vert.x, to provide a rich set of features for building cloud-native applications.
+Moreover, Quarkus is completely open-source and licensed under the link:https://www.apache.org/licenses/LICENSE-2.0[Apache License 2.0], which allows everyone to have a look at the source code or even contribute in the development process. They provide an open community where new ideas can be shared, discussed and implemented to build the future of Java applications.
 
 ==== The Core Concepts
+Quarkus is based on four key pillars:
 
-===== Kubernetes-native
+- Developer Joy
+- Best of Breed Libraries and Standards
+- Kubernetes-native
+- Imperative and reactive code 
 
-===== Imperative / Reactive
+Developer Joy is crucial for the success of every project. Therefore, Quarkus includes selected tools and features such as live code reload and an extensive documentation that enable a smooth development experience. 
 
-==== The benefits
+It provides a full stack framework that leverages the "Best of Breed Libraries and Standards" as it is described on their website. Proven standards are used to help with the transition from other frameworks, all adapted to work with the standard backbone of Quarkus. 
 
-=== Introduction to Quarkus
+The two most important and most prominent features of Quarkus, Kubernetes-native and imperative / reactive design patterns are described in greater detail in the following 2 paragraphs. 
 
-==== Prerequisites
+==== Kubernetes-native
+Since Quarkus is targeting cloud applications and is designed to be easily scalable, it was built to work with Kubernetes from the ground up. There is no need for developers to learn every small intricacy of Kubernetes before being able to deploy their application and take advantage of its features and capabilities. This is achieved through a few different features:
 
-==== Documentation
+===== Containerization
+Applications build with the framework are designed to be containerized and deployed in Kubernetes clusters. This includes the automatic generation of configuration- and container-files, elimintating the need for the developer to write YAML-files by hand. In addition, application configurations can be managed by an extension that automatically uses Kubernetes ConfigMaps and Secrets to share, for example passwords and API-keys, between services, without having to mount them into a Pod or make other adjustments to the Cluster manually. 
 
-==== The first project
+===== Tracing and Health
+Through the use of link:https://opentracing.io/[OpenTracing], developers can implement tracing in their distributed microservices, which helps with debugging and tracking of the process state. 
+
+Quarkus incorporates SmallRye Health, which is based on the MicroProfile Health specification, to enable applications to provide information about their status to external viewers in a Kubernetes environment. This information can be used by automated processes to decide whether to restart or discard the application.
+
+==== Imperative / Reactive
+Quarkus supports the imperative as well as the reactive programming paradigm. This means that it can be used for a plethora of different applications ranging from monolithic imperative to distributed reactive microservice-based applications. Imperative and reactive programming patterns and components can also be mixed and matches in the same project, allowing developers to quickly adapt to their requirements. 
