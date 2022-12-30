@@ -33,3 +33,22 @@ link:https://quarkus.io/guides/dev-services[Dev Services] are provided by Quarku
 Since PostgreSQL, that we are using in this demonstration, is a so called link:https://quarkus.io/guides/dev-services[Dev Service], Quarkus will setup the database for us and we just have to specify it as our datasource.
 
 
+====== SQL script
+Since we are currently telling the db to always "drop-and-create" for debugging purposes, we are going to create a simple import.sql script in the same directory as application.properties so that it is executed on creation and we have some sample data to work with.
+
+[,sql]
+----
+INSERT INTO user(id, username, email) VALUES (nextval('hibernate_sequence'), 'Max Musterman', 'max@musterman.at');
+INSERT INTO user(id, username, email) VALUES (nextval('hibernate_sequence'), 'Hans Klaus', 'hans@klaus.at');
+INSERT INTO user(id, username, email) VALUES (nextval('hibernate_sequence'), 'Justin Clown', 'justin@clown.at');
+----
+
+==== Reactive Resources
+Since our interactions with the database are non-blocking now, our HTTP resources (endpoints) have to be constructed asynchronously as well. For this we are using link:https://quarkus.io/guides/mutiny-primer[Mutiny's] Uni and Multi as return-types in this demonstration, since the Panache Entities also expose methods using these types. Nevertheless, are link:https://kotlinlang.org/docs/coroutines-overview.html[Kotlin Coroutines] also a valid solution for this task. 
+
+Uni => emits a single event (an item on success or a failure) - basically represents an asynchronous action that returns 0 or 1
+
+Multi => emits multiple events (n items, 1 failure or 1 completion) - these could represent streams of items
+
+===== Create the Resource
+

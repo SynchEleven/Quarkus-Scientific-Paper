@@ -16,7 +16,7 @@ The following sections will guide you through the process of setting up Quarkus 
 === Setup
 
 ==== Quarkus CLI
-The Quarkus CLI is an optional tool that allows one to create, run and build Quarkus application. Every step done with the CLI could also be done inside of the IDE or with Maven.
+The link:https://quarkus.io/guides/cli-tooling[Quarkus CLI] is an optional tool that allows one to create, run and build Quarkus application. Every step in this demonstration could be done with the CLI tool.
 
 ===== Quarkus Dev Mode
 The Quarkus dev mode allows the developer to build and test Quarkus applications in a fast and efficient manner. When dev mode is enabled, Quarkus automatically reloads the application code and resources whenever they are modified, allowing developers to see the results of their changes in real-time. This can be particularly useful when developing applications that have a long start-up time or that require a large amount of memory to run.
@@ -28,31 +28,6 @@ There are different ways to start quarkus dev mode:
 2. Through Quarkus CLI: with the ``quarkus dev`` command when the terminal is scoped in the project root directory
 
 3. Through Maven: with the ``./mvnw quarkus:dev`` command
-
-===== Installation
-It can be installed via different package managers such as SDKMAN!, Homebrew, Chocolatey or Scoop. This example will use SDKMAN!. 
-Make sure that you have the JDK installed beofre installing the Quarkus CLI...
-
-Install the CLI with this command
-[source,powershell,linenums=implicit]
-----
-sdk install quarkus
-----
-
-Once installed, you can check the installed version using the command
-[source,powershell,linenums=implicit]
-----
-quarkus --version
-2.15.1.Final
-----
-
-If an older version should be installed or you want to upgrade the current version, use this SDKMAN! command:
-[source,powershell,linenums=implicit]
-----
-sdk upgrade quarkus
-----
-
-Further information about the installation of Quarkus CLI link:https://quarkus.io/guides/cli-tooling[Docs - CLI tooling]
 
 ==== Information up front
 In this demonstration we are going to create a very simple reactive Quarkus application that will implement a REST endpoint. The application will also be build and deployed on a Kubernetes cluster. 
