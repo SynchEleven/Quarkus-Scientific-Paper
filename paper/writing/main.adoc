@@ -53,7 +53,7 @@ include::chapter1/main.adoc[]
 
 <<<
 
-include::title/introduction-to-quarkus.adoc[]
+include::title/the-first-project.adoc[]
 
 <<<
 
@@ -61,23 +61,11 @@ include::chapter2/main.adoc[]
 
 <<<
 
-include::chapter3/main.adoc[]
+include::title/reactive-endpoints.adoc[]
 
 <<<
 
-include::glossary.adoc[]
-
-== List of figures
-list-of::image[enhanced_rendering=true]
-
-== List of tables
-list-of::table[enhanced_rendering=true]
-
-== List of code snippets
-list-of::listing[enhanced_rendering=true]
-
-== Bibliography
-bibliography::[]
+include::chapter3/main.adoc[]
 
 <<<
 

@@ -8,6 +8,6 @@ endif::[]
 '''
 
 [author={author}]
-== The first project
+== How to Reactive
 
 '''

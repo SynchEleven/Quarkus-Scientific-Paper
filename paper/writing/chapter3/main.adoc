@@ -1,47 +1,35 @@
-=== Abstract
-Hello World
+=== Datamodel
+The next goal is to make the first reactive endpoint. But first, we are going to make a simple model so that we have something to handle for our HTTP requests.
 
-=== Heading 1
-Hello World
+==== First Panache Model
+Since we are using the "Hibernate Reactive with Panache" extension, we are making a Panache Entity called User, which stores a username and an email. These models are the same as usual if you are familiar with Hibernate and java persistence annotations, the only thing different is that the model inherits from PanacheEntity (make sure to import the reactive version), making it a domain model capable of being handled by Panache:
 
-==== My Cite
-This is a citation. cite:[CRAFT]
-
-==== A formula
-latexmath:[\qquad \frac{a}{b} = 438]
-
-// A page break
-<<<
-
-==== A table
-.My new Table (Source: {author})
-[cols="1,1"]
-|===
-|Cell in column 1, row 1
-|Cell in column 2, row 1
-
-|Cell in column 1, row 2
-|Cell in column 2, row 2
-
-|Cell in column 1, row 3
-|Cell in column 2, row 3
-|===
-
-=== Heading 2
-Hello World
-
-=== Heading 3
-Hello World
-
-=== Heading X
-Hello World
-
-.My Python Code (Source: {author})
-[source,python,linenums=implicit]
+[source, java]
 ----
-if True:
-    print("Hello World")
+@Entity
+@Cacheable
+public class User extends PanacheEntity {
+    @Column(length = 64)
+    public String username;
+    @Column(unique = true)
+    public String email;
+}
 ----
 
-=== Conclusion
-Hello World
+==== Database configuration
+We added the postgreSQL reactive extension, but without configuration it will not do anything for us. Therefore, we need to configure it in the application.properties as follows:
+
+----
+quarkus.datasource.db-kind=postgresql
+quarkus.hibernate-orm.database.generation=drop-and-create
+----
+
+Now Quarkus will use the PostgreSQL database as a datasource and it will handle the DB generation. 
+
+===== Dev Services
+
+link:https://quarkus.io/guides/dev-services[Dev Services] are provided by Quarkus as out-of-the-box configured extension. These include databases like mongoDB or PostgreSQL for example, which you just have to add as an extension and can instantly use without any further configuration - most of the time they are automatically run inside of a Testcontainer. These services are just for test and development purposes only, but allow one to easliy change and try a lot of different databases without changing a bunch of configurations. 
+
+Since PostgreSQL, that we are using in this demonstration, is a so called link:https://quarkus.io/guides/dev-services[Dev Service], Quarkus will setup the database for us and we just have to specify it as our datasource.
+
+

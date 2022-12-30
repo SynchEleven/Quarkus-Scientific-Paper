@@ -1,5 +1,12 @@
+=== The Documentation
+Just a word about the link:https://quarkus.io/guides/[Quarkus Documentation] before jumping into a sample project. It is absoluetly phenomenal. It not only covers a wide range of topics, from getting started with Quarkus to advanced usage and best practices, but also includes detailed explanations of the various features and capabilities of Quarkus, as well as examples and code samples that illustrate how to use these features in practice.
+
+In addition to being comprehensive, the Quarkus documentation is also well-organized and easy to navigate. It includes a clear table of contents and a search function, which make it easy to find the information you need. The documentation is also regularly updated to reflect the latest features and changes in Quarkus, so you can be sure that you are always working with the most up-to-date information.
+
+Overall, the Quarkus documentation is an invaluable resource for developers who are learning how to use the framework or looking for guidance on specific features. So if you want to learn more about any topic discussed in this paper, I would greatly advice you to have a look in the official documentation. 
+
 === Coming up
-The following sections will guide you through the process of setting up Quarkus and creating your first project. Both imperative and reactive programming styles will be covered, so you can choose the approach that best fits your needs. Links to further resources will be provided along the way, in case you want to dive deeper in any of the discussed topics.
+The following sections will guide you through the process of setting up Quarkus and creating your first project. Both imperative and reactive programming styles will be covered, so you can choose the approach that best fits your needs. It is heavily inspired by link:https://quarkus.io/guides/getting-started-reactive[this] guide from Quarkus and links to further resources will be provided along the way, in case you want to dive deeper in any of the discussed topics.
 
 === Prerequisites
 - An IDE (Examples will use IntelliJ)
@@ -9,7 +16,18 @@ The following sections will guide you through the process of setting up Quarkus 
 === Setup
 
 ==== Quarkus CLI
-The Quarkus CLI is an optional tool that allows one to create, run and build Quarkus application easier. Every step done with the CLI could theoretically also be done inside of the IDE or with Maven.
+The Quarkus CLI is an optional tool that allows one to create, run and build Quarkus application. Every step done with the CLI could also be done inside of the IDE or with Maven.
+
+===== Quarkus Dev Mode
+The Quarkus dev mode allows the developer to build and test Quarkus applications in a fast and efficient manner. When dev mode is enabled, Quarkus automatically reloads the application code and resources whenever they are modified, allowing developers to see the results of their changes in real-time. This can be particularly useful when developing applications that have a long start-up time or that require a large amount of memory to run.
+
+There are different ways to start quarkus dev mode:
+
+1. Through the development environment: Most widely popular IDEs and Editors have integrations for quarkus which start you application automatically into dev mode
+
+2. Through Quarkus CLI: with the ``quarkus dev`` command when the terminal is scoped in the project root directory
+
+3. Through Maven: with the ``./mvnw quarkus:dev`` command
 
 ===== Installation
 It can be installed via different package managers such as SDKMAN!, Homebrew, Chocolatey or Scoop. This example will use SDKMAN!. 
@@ -36,7 +54,57 @@ sdk upgrade quarkus
 
 Further information about the installation of Quarkus CLI link:https://quarkus.io/guides/cli-tooling[Docs - CLI tooling]
 
-==== Project setup
-The Quarkus project here will be created using IntelliJ, since it is in-built and allows easy management of the dependencies used. An alternative way, if you are using an IDE without an in-built Quarkus initializer, is the website https://code.quarkus.io/, where one can select the needed dependencies and it generates the bootstrapped project, just like the Spring Initializer for Spring projects. 
+==== Information up front
+In this demonstration we are going to create a very simple reactive Quarkus application that will implement a REST endpoint. The application will also be build and deployed on a Kubernetes cluster. 
 
-=== Documentation
+==== Project setup
+The Quarkus project shown will be created using IntelliJ, since it has an in-built Qurakus initializer and allows easy management of the dependencies used. An alternative way, if you are using an IDE without an in-built initializer, is the website https://code.quarkus.io/, where one can select the needed dependencies and it generates the bootstrapped project, just like the Spring Initializer for Spring projects. Alternitavely, although not recommended, can projects be created through the Quarkus CLI. It is just more tedious to specify the right dependencies and is therfore prone for more errors. 
+
+===== Configuration
+In IntelliJ, click on create new Project and select the Quarkus preset:
+
+image::../images/chapter2/create_project.JPG[create_project, 350]
+
+You have some configuration options here:
+
+1. Provide a name - In this case we are calling it "quarkus-introduction". 
+2. Provide a location
+3. Specify if you want to write in Java or Kotlin and use Maven or Gradle - In this case we use Java with Maven. 
+4. Provide a Group and Artifact - Same as in other Java projects
+5. Specify the JDK - We are using the latest (JDK 19) for this demonstration
+
+Additionally you can select if you want sample code or not. For starters I would recommend enabling this, since it creates some folders with the right structure, as well as some controllers for an easier learning experience.
+
+===== Extensions
+After clicking "Next" you are presented with a list of possible extensions, which you can use in your new Quarkus project. These are basically just maven dependencies so don't worry if you miss one here, you can add them in later by hand (or by using Maven / Quarkus CLI) as well.
+
+For this demonstration we are going to be using:
+
+- RESTEasy Reactive Jackson
+- Hibernate Reactive with Panache
+- Reactive PostgreSQL client
+
+===== Overview
+When creating a project, Quarkus automatically creates a README.md that contains informations and simple guides about the operation of Quarkus and the extension you added. We will cover some of those steps in this demonstration as well.
+
+===== Project Structure
+image::../images/chapter2/project_structure.JPG[structure]
+
+The created project structure should be familiar to most Java developers. A main and test folder were created with just some sample code which is executable. But Quarkus did not only create the standard folders but also automatically created a docker folder containing the necessary Dockerfiles to run the application in a container. 
+
+==== Starting it
+Our first goal is to start this template application into dev mode. You can chose one of the ways described <<Quarkus Dev Mode>>.
+
+It should start without a problem and it was successful when you see the following lines in the output:
+
+image::../images/chapter2/start_project.JPG[start_project]
+
+Now you should be able to see the Quarkus interface on http://localhost:8080/
+
+===== Interface
+Quarkus generates an interface for the developer for easier debugging and navigation. Especially helpul are the available Paths on the bottom left hand side and the Dev UI -> reached by clicking the "Visit the Dev UI" button.
+
+The "Dev UI" is a very handy feature when using Quarkus. One can manage bascially everything needed for configuring and debugging their application on it. Going into detail about every feature would exceed the scope of this paper but one can run tests, reset databases, look at endpoints and beans currently in the dependency injection and much more. It therefore, together with the automatic code reload, enables the developer to keep the application running and see the changes instantly without having to restart it constantly.
+
+==== The First Endpoint
+Now, with the application up and running, we can take also take a look at the first autogenerated endpoint at http://localhost:8080/hello. You should get the text "Hello from RESTEasy Reactive" back. To check if the auto code reload works, try to change the return text in your src/main/java/org/acme/ExampleResource.java to something different like "Hola from RESTEasy Reactive". You should instantly get that new text after refreshing the localhost page. If this works you can move on to the next part. If this does not work, I would recommend restarting the dev mode or checking if your setup in the previous steps was done correctly.
