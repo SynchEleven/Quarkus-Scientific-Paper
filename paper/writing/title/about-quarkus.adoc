@@ -1,0 +1,13 @@
+ifdef::printed-version[]
+{blank}
+
+<<<
+
+endif::[]
+
+'''
+
+[author={author}]
+== About Quarkus
+
+'''

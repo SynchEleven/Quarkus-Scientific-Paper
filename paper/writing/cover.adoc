@@ -1,0 +1,19 @@
+[.text-center]
+Scientific Paper
+
+image::logos/spengergasse.svg[width=50%, role="noborder"]
+
+[.text-center]
+supervised by +
+**Klaus Unger**
+
+'''
+
+Submission Note
+
+Date: [REPLACE WITH DATE]
+
+Signature:
+
+'''
+

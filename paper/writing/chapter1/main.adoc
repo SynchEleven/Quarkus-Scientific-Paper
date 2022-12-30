@@ -1,0 +1,20 @@
+=== About Quarkus
+
+==== Abstract
+Quarkus is a Kubernetes-native Java framework designed to make Java a leading platform in cloud-native application development. It is a lightweight, high-performance framework that allows developers to build cloud-native applications that can run either in a container or as a native binary on various platforms, including Linux, Windows, and MacOS. Quarkus aims to reduce the time it takes to develop and deploy Java applications, while also reducing the memory footprint and startup time of those applications. It achieves this through the use of innovative technologies such as ahead-of-time compilation, a small memory footprint runtime, and a fast boot time. Quarkus also integrates with popular frameworks and libraries, such as Eclipse MicroProfile, Hibernate, and Eclipse Vert.x, to provide a rich set of features for building cloud-native applications.
+
+==== The Core Concepts
+
+===== Kubernetes-native
+
+===== Imperative / Reactive
+
+==== The benefits
+
+=== Introduction to Quarkus
+
+==== Prerequisites
+
+==== Documentation
+
+==== The first project
