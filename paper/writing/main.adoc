@@ -67,6 +67,15 @@ include::title/reactive-endpoints.adoc[]
 
 include::chapter3/main.adoc[]
 
+
+<<<
+
+include::title/tips-and-traps.adoc[]
+
+<<<
+
+include::chapter4/main.adoc[]
+
 <<<
 
 include::additional_sources.adoc[]

@@ -1,3 +1,3 @@
-INSERT INTO user(id, username, email) VALUES (nextval('hibernate_sequence'), 'Max Musterman', 'max@musterman.at');
-INSERT INTO user(id, username, email) VALUES (nextval('hibernate_sequence'), 'Hans Klaus', 'hans@klaus.at');
-INSERT INTO user(id, username, email) VALUES (nextval('hibernate_sequence'), 'Justin Clown', 'justin@clown.at');
+INSERT INTO fruit(id, name) VALUES (nextval('hibernate_sequence'), 'Cherry');
+INSERT INTO fruit(id, name) VALUES (nextval('hibernate_sequence'), 'Apple');
+INSERT INTO fruit(id, name) VALUES (nextval('hibernate_sequence'), 'Banana');
