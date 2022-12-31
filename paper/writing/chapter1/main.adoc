@@ -7,7 +7,7 @@ For performance data between Spring and Quarkus look link:https://www.baeldung.c
 
 === The Core Concepts
 ==== Developer Joy
-It includes tools and features such as live code reload and extensive documentation to facilitate a smooth development experience, and it provides a full stack framework, using only "Best of Breed Libraries and Standards" as it is described on their website, that are used to help developers transition from other frameworks and improve their quality of life while coding. 
+Quarkus is a full stack framework that offers a range of tools and features, such as live code reload and comprehensive documentation, to improve the development experience for developers. It is designed to use only "Best of Breed Libraries and Standards," as stated on their website, to help developers transition from other frameworks and enhance their coding productivity.
 
 ==== Kubernetes-native
 Quarkus is designed to be easily scalable and optimized for cloud applications, and it was built to work seamlessly with Kubernetes. It includes features such as containerization, which allows applications to be easily deployed in Kubernetes clusters, and automatic generation of configuration and container files, eliminating the need for manual YAML file creation. Quarkus also has an extension that allows application configurations to be managed using Kubernetes ConfigMaps and Secrets, making it easy to share sensitive information such as passwords and API keys between services. Overall, Quarkus simplifies the process of deploying and managing applications in Kubernetes and Docker, enabling developers to take advantage of its capabilities without having to learn every intricate detail of the platform.

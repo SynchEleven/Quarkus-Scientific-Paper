@@ -19,10 +19,10 @@ asciidoctor-pdf \
 -r asciidoctor-mathematical \
 -r asciidoctor-bibtex \
 -r asciidoctor-lists \
--o thesis.pdf \
+-o Quarkus-Paper-Hren.pdf \
 writing/main.adoc # --trace -v -w -t
 
-cp thesis.pdf /work/build/
+cp Quarkus-Paper-Hren.pdf /work/build/
 
 echo "Building printed version..."
 asciidoctor-pdf \
