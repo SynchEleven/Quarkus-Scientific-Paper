@@ -39,11 +39,11 @@ toc::[]
 
 <<<
 
+:sectnums:
+
 include::abstract/main.adoc[]
 
 <<<
-
-:sectnums:
 
 include::title/about-quarkus.adoc[]
 

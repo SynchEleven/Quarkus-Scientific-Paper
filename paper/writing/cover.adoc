@@ -9,11 +9,10 @@ supervised by +
 
 '''
 
-Submission Note
+Submission Note:
 
-Date: [REPLACE WITH DATE]
+Date: 31.12.2022
 
-Signature:
+Page limit is fulfilled excluding the Abstract and title pages
 
 '''
-

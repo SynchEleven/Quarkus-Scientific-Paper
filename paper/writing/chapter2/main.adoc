@@ -1,17 +1,18 @@
 === The Documentation
-Just a word about the link:https://quarkus.io/guides/[Quarkus Documentation] before jumping into a sample project. It is absoluetly phenomenal. It not only covers a wide range of topics, from getting started with Quarkus to advanced usage and best practices, but also includes detailed explanations of the various features and capabilities of Quarkus, as well as examples and code samples that illustrate how to use these features in practice.
-
-In addition to being comprehensive, the Quarkus documentation is also well-organized and easy to navigate. It includes a clear table of contents and a search function, which make it easy to find the information you need. The documentation is also regularly updated to reflect the latest features and changes in Quarkus, so you can be sure that you are always working with the most up-to-date information.
-
-Overall, the Quarkus documentation is an invaluable resource for developers who are learning how to use the framework or looking for guidance on specific features. So if you want to learn more about any topic discussed in this paper, I would greatly advice you to have a look in the official documentation. 
+Just a word about the link:https://quarkus.io/guides/[Quarkus Documentation], it is absoluetly phenomenal. It not only covers a wide range of topics, from getting started with Quarkus to advanced usage and best practices, but also includes detailed explanations of the various features and capabilities of Quarkus, as well as examples and code samples that illustrate how to use these features in practice. So if you want to learn more about any topic discussed in this paper, I would greatly advice you to have a look in the official documentation. 
 
 === Coming up
-The following sections will guide you through the process of setting up Quarkus and creating your first project. It will focus on the reactive programming styles , since it is a key feature of Quarkus and is better suited for cloud-native applications, but the Quarkus specific changes, introduced in the demonstration, are also applicable for the imperative style. It is heavily inspired by link:https://quarkus.io/guides/getting-started-reactive[this] guide from Quarkus and links to further resources will be provided along the way, in case you want to dive deeper in any of the discussed topics.
+This guide will cover the process of setting up Quarkus and creating a reactive programming style project, which is a key feature of Quarkus and well-suited for cloud-native applications. Note that the Quarkus-specific changes introduced in this guide are also applicable to imperative style projects.
+
+****
+It is heavily inspired by link:https://quarkus.io/guides/getting-started-reactive[this] official Quarkus guide -  additional links to further resources will be provided along the way.
+****
 
 === Prerequisites
 - An IDE (Examples will use IntelliJ)
 - JDK 19 installed with JAVA_HOME configured
 - Maven 3.8.6
+- Docker Desktop installed and running 
 
 === Setup
 
@@ -19,36 +20,28 @@ The following sections will guide you through the process of setting up Quarkus 
 The link:https://quarkus.io/guides/cli-tooling[Quarkus CLI] is an optional tool that allows one to create, run and build Quarkus application. Every setup step in this demonstration could be done with the CLI tool.
 
 ===== Quarkus Dev Mode
-The Quarkus dev mode allows the developer to build and test Quarkus applications in a fast and efficient manner. When dev mode is enabled, Quarkus automatically reloads the application code and resources whenever they are modified, allowing developers to see the results of their changes in real-time. This can be particularly useful when developing applications that have a long start-up time or that require a large amount of memory to run.
+The Quarkus dev-mode allows the developer to test Quarkus applications in a fast and efficient manner. When dev mode is enabled, Quarkus automatically reloads the application code and resources whenever they are modified, allowing developers to see the results of their changes in real-time. This is particularly useful when developing applications with long start-up times.
 
 There are different ways to start quarkus dev mode:
 
-1. Through the development environment: Most widely popular IDEs and Editors have integrations for quarkus which start you application automatically into dev mode
+1. Through the development environment: Most widely popular IDEs have integrations for quarkus which start  automatically into dev mode
 
-2. Through Quarkus CLI: with the ``quarkus dev`` command when the terminal is scoped in the project root directory
+2. Through Quarkus CLI: with the ``quarkus dev`` command scoped in the project root directory
 
 3. Through Maven: with the ``./mvnw quarkus:dev`` command
 
 ==== Information up front
 In this demonstration we are going to create a very simple reactive Quarkus application that will implement a REST endpoint. The application will also be build and deployed on a Kubernetes cluster. 
 
-This project assumes that you have already made a project with Endpoints in Java, as none of the "usual" annotations are explained further.
+This project assumes that you have already made a project with Endpoints in Java, as none of the "usual" annotations and processes are explained further.
 
 ==== Project setup
-The Quarkus project shown will be created using IntelliJ, since it has an in-built Qurakus initializer and allows easy management of the dependencies used. An alternative way, if you are using an IDE without an in-built initializer, is the website https://code.quarkus.io/, where one can select the needed dependencies and it generates the bootstrapped project, just like the Spring Initializer for Spring projects. Alternitavely, although not recommended, can projects be created through the Quarkus CLI. It is just more tedious to specify the right dependencies and is therfore prone for more errors. 
+Quarkus projects can be created using an IDE, the Quarkus Initializer website, or the Quarkus CLI. IntelliJ, used for this demonstration, offers an in-built Quarkus initializer and easy dependency selection, just like the Initializer website that generates a bootstrapped project similar to the Spring Initializer for Spring projects. The Quarkus CLI, which is less recommended, requires specifying dependencies by hand and is therefore tedious and prone to errors.
 
 ===== Configuration
 In IntelliJ, click on create new Project and select the Quarkus preset:
 
-image::../images/chapter2/create_project.JPG[create_project, 350]
-
-You have some configuration options here:
-
-1. Provide a name - In this case we are calling it "quarkus-introduction". 
-2. Provide a location
-3. Specify if you want to write in Java or Kotlin and use Maven or Gradle - In this case we use Java with Maven. 
-4. Provide a Group and Artifact - Same as in other Java projects
-5. Specify the JDK - We are using the latest (JDK 19) for this demonstration
+You have some configuration options here that are the same as with every other Java project. The demonstration projet is called "quarkus-introduction" with group "org.acme" and uses JDK 19 with Maven.
 
 Additionally you can select if you want sample code or not. For starters I would recommend enabling this, since it creates some folders with the right structure, as well as some controllers for an easier learning experience.
 
@@ -65,20 +58,21 @@ For this demonstration we are going to be using:
 When creating a project, Quarkus automatically creates a README.md that contains informations and simple guides about the operation of Quarkus and the extension you added. We will cover some of those steps in this demonstration as well.
 
 ===== Project Structure
-image::../images/chapter2/project_structure.JPG[structure]
-
 The created project structure should be familiar to most Java developers. A main and test folder were created with just some sample code which is executable. But Quarkus did not only create the standard folders but also automatically created a docker folder containing the necessary Dockerfiles to run the application in a container. 
 
-==== Starting it
-Our first goal is to start this template application into dev mode. You can chose one of the ways described <<Quarkus Dev Mode>>.
+image::../images/chapter2/project_structure.JPG[structure, width=35%]
 
-It should start without a problem and it was successful when you see the following lines in the output:
+=== Starting it
+Our first goal is to start this template application into dev mode. You can chose one of the ways described <<Quarkus Dev Mode>>. It should start without a problem and it was successful when you see the following lines in the output:
 
 image::../images/chapter2/start_project.JPG[start_project]
 
 Now you should be able to see the Quarkus interface on http://localhost:8080/
 
-===== Interface
+==== Interface
 Quarkus generates an interface for the developer for easier debugging and navigation. Especially helpul are the available Paths on the bottom left hand side and the Dev UI -> reached by clicking the "Visit the Dev UI" button.
 
 The "Dev UI" is a very handy feature when using Quarkus. One can manage bascially everything needed for configuring and debugging their application on it. Going into detail about every feature would exceed the scope of this paper but one can run tests, reset databases, look at endpoints and beans currently in the dependency injection and much more. It therefore, together with the automatic code reload, enables the developer to keep the application running and see the changes instantly without having to restart it constantly.
+
+==== The First Endpoint
+Now, with the application up and running, we can take also take a look at the first autogenerated endpoint at http://localhost:8080/hello. You should get the text "Hello from RESTEasy Reactive" back. To check if the auto code reload works, try to change the return text in your src/main/java/org/acme/ExampleResource.java to something different like "Hola from RESTEasy Reactive". You should instantly get that new text after refreshing the localhost page. If this works you can move on to the next part. If this does not work, I would recommend restarting the dev mode or checking if your setup in the previous steps was done correctly.
