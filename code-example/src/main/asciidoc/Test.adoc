@@ -1,3 +1,0 @@
-= This is a test file
-
-== Used just for testing

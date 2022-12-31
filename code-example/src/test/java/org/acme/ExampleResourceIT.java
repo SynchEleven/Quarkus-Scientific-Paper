@@ -1,4 +1,4 @@
-package eu.kekx;
+package org.acme;
 
 import io.quarkus.test.junit.QuarkusIntegrationTest;
 

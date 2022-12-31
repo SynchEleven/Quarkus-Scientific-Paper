@@ -33,7 +33,7 @@ link:https://quarkus.io/guides/dev-services[Dev Services] are provided by Quarku
 Since PostgreSQL, that we are using in this demonstration, is a so called link:https://quarkus.io/guides/dev-services[Dev Service], Quarkus will setup the database for us and we just have to specify it as our datasource.
 
 
-====== SQL script
+===== SQL script
 Since we are currently telling the db to always "drop-and-create" for debugging purposes, we are going to create a simple import.sql script in the same directory as application.properties so that it is executed on creation and we have some sample data to work with.
 
 [,sql]
@@ -50,5 +50,5 @@ Uni => emits a single event (an item on success or a failure) - basically repres
 
 Multi => emits multiple events (n items, 1 failure or 1 completion) - these could represent streams of items
 
-===== Create the Resource
+==== Create the Resource
 
