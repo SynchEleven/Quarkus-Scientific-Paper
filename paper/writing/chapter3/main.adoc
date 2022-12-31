@@ -2,7 +2,7 @@
 The next goal is to make the first reactive endpoint. But first, we are going to make a simple model so that we have something to handle with our HTTP requests.
 
 ==== First Panache Model
-Since we are using the "Hibernate Reactive with Panache" extension, we are making a link:https://quarkus.io/guides/hibernate-orm-panache[Panache] Entity called Fruit, which just stores a name. These models should look familiar when you have worked with Hibernate and java persistence annotations, the only thing different is that the model inherits from PanacheEntity (make sure to import the reactive version), making it a domain model capable of being handled by Panache:
+Since we are using the "Hibernate Reactive with Panache" extension, we are making a link:https://quarkus.io/guides/hibernate-orm-panache[Panache] Entity called Fruit, which just stores a name. These models should look familiar when you have worked with Hibernate and Java-Persistence annotations, the only thing different is that the model inherits from PanacheEntity (make sure to import the reactive version), making it a domain model capable of being handled by Panache:
 
 [source, java]
 ----
@@ -16,7 +16,7 @@ public class Fruit extends PanacheEntity {
 ----
 
 ===== What is Panache?
-Panache is a Quarkus-specific library that, similarly to Spring Data JPA, simplifies the Hibernate-based development. It takes aways most of the repetetitve boilerplate code and can also support the repository pattern.
+Panache is a Quarkus-specific library that, similarly to Spring Data JPA, simplifies the Hibernate-based development. It takes away most of the repetetitve boilerplate code and can also support the repository pattern.
 
 ==== Dev Services
 Quarkus provides out-of-the-box configured extensions called link:https://quarkus.io/guides/dev-services[Dev Services] for testing and development purposes. These include services like PostgreSQL and Kubernetes, which can be easily added as extensions and used for development purposes without further configuration, often running inside a Testcontainer. 
@@ -41,7 +41,7 @@ INSERT INTO fruit(id, name) VALUES (nextval('hibernate_sequence'), 'Banana');
 ----
 
 === Reactive Resources
-Since our interactions with the database are non-blocking now, our HTTP resources (endpoints) have to be constructed asynchronously as well. For this we are using link:https://quarkus.io/guides/mutiny-primer[Mutiny's] Mutiny introduces two types that are used for reactive programming:
+Since our interactions with the database are non-blocking now, our HTTP resources (endpoints) have to be constructed asynchronously as well. For this we are using link:https://quarkus.io/guides/mutiny-primer[Mutiny's]. Mutiny introduces two types that are used for reactive programming:
 
 Uni = emits a single event (an item on success or a failure) - basically represents an asynchronous action that returns 0 or 1
 
@@ -73,11 +73,11 @@ This is used for Quarkus's link:https://quarkus.io/guides/cdi[Dependency Injecti
 This was explained in <<Reactive Resources>> - we want to emit one event - the event, that we found and returned a List of fruits. Therefore, we use a Uni.
 
 ===== Panache and the "listAll" method
-One may wonder why we do not have to use the repository patter. And yes, link:https://quarkus.io/guides/hibernate-orm-panache[Panache] does support it, but since this is a showcase, a different method is used. We can use the "listAll" method, since our Entity extends the ``PanacheEntity`` class. The PanacheEntity class provides us with all of the functionality a repository would usually provide (i.e. list, find, count, persist, delete, etc.). We could also extend this functionality just like in a repostiory but this is not covered in this demonstration. This link:https://quarkus.io/guides/hibernate-orm-panache[Panache Guide] provides more information about that.
+One may wonder why we do not have to use the repository patter. And yes, link:https://quarkus.io/guides/hibernate-orm-panache[Panache] does support it, but since this is a showcase, a different method is used. We can use the "listAll" method, since our Entity extends the ``PanacheEntity`` class. The PanacheEntity class provides us with all of the functionality a repository would usually provide (i.e. list, find, count, persist, delete, etc.). We could also extend this functionality, just like in a repostiory, but this is not covered in this demonstration. This link:https://quarkus.io/guides/hibernate-orm-panache[Panache Guide] provides more information about that.
 
 
 === Testing the reactive Resource
-Now that the endpoint has been created, you can try calling it. There is no difference to the end user between a reactive and non-reactive endpoint if it is written correctly, only the execution in the background differs. You can leave the application running while working on the endpoints since the code is automatically refreshed, but when working on the domain model, the application must be restarted since the DB model is changing and the DB container (in this case, the PostgreSQL container) is not restarted automatically on changes. Try visiting http://localhost:8080/fruits. You should see this output:
+Now that the endpoint has been created, you can try calling it. There is no difference to the end user between a reactive and non-reactive endpoint, if it is written correctly, only the execution in the background differs. You can leave the application running while working on the endpoints since the code is automatically refreshed, but when working on the domain model, the application must be restarted since the DB model is changing and the DB container (in this case, the PostgreSQL container) is not restarted automatically on changes. Try visiting http://localhost:8080/fruits. You should see this output:
 
 [source, json]
 ----
@@ -110,9 +110,9 @@ Finally, a POST endpoint explains the first big change in syntax. It looks like 
     }
 ----
 
-The ``Panache.<Fruit>withTransaction`` method starts a database transaction, that we need to write to a database,  and invokes the fruit::persist method. The fruit::persist method is a method reference that calls the persist method on the fruit object, which it has because of the ``PanacheEntity`` inheritance. The persist method saves the fruit object to the database.
+The ``Panache.<Fruit>withTransaction`` method starts a database transaction, which we need to write to a database,  and invokes the fruit::persist method. The fruit::persist method is a method reference that calls the persist method on the fruit object, which it has because of the ``PanacheEntity`` inheritance. The persist method saves the fruit object to the database.
 
-The persist returns a Uni and when it is successful the ``.onItem()`` is executed. The ``.transform`` allows the mapping of the result into a 201 Http Created Response. The id of the inserted item provides the location of where the item can be retrieved from to the user. 
+The persist returns a Uni and when it is successful the ``.onItem()`` is executed. The ``.transform`` allows the mapping of the result into a 201 HTTP-Created Response. The id of the inserted item provides the location of where the item can be retrieved from to the user. 
 
 ===== Testing
 This post endpoint can easily be tested using the curl command, if installed using this command:
@@ -126,10 +126,10 @@ This post endpoint can easily be tested using the curl command, if installed usi
 
 <<<
 
-Otherwise a normal Unit test can be written. These are not further described, since they do not differ from normal Java tests and reactive or non-reactive, as discussed previously, does not change the behaviour of the endpoint for the tests. link:https://github.com/quarkusio/quarkus-quickstarts/blob/main/hibernate-reactive-panache-quickstart/src/test/java/org/acme/hibernate/orm/panache/FruitsEndpointTest.java[Here] are some inspiration tests such endpoints and there is also some information about testing in the link:https://quarkus.io/guides/getting-started#testing[gettting started guide].
+Otherwise a normal Unit test can be written. These are not further described, since they do not differ from normal Java tests and reactive or non-reactive, as discussed previously, does not change the behaviour of the endpoint for the tests. link:https://github.com/quarkusio/quarkus-quickstarts/blob/main/hibernate-reactive-panache-quickstart/src/test/java/org/acme/hibernate/orm/panache/FruitsEndpointTest.java[Here] are some inspiration tests for these endpoints and there is also some information about testing in the link:https://quarkus.io/guides/getting-started#testing[gettting started guide].
 
 === Building
-For building a Quarkus application you can simply issue the maven command ``./mvnw install`` for building a jar. Do not forget that the PostgreSQL datbase is just a dev service and NOT available in the buileded version. Therefore, one has to start a database server, for example in a docker container, and provide the corresponding information when starting the jar:
+For building a Quarkus application you can simply issue the maven command ``./mvnw install`` for building a jar. Do not forget that the PostgreSQL datbase is just a Dev Service and is NOT available in the buileded version. Therefore, one has to start a database server, for example in a docker container, and provide the corresponding information when starting the jar:
 
 ----
 java \
@@ -140,20 +140,24 @@ java \
 ----
 
 ==== Native Executables
-Native executables can provide a performance and memory usage improvement on some plattforms, especially useful when running an application on a docker container. Since the packaging to native executables requires a platform specific configuration of GraalVM, which you exceed the scope of this paper, you can find an easy step-by-step guide on how to do it link:https://quarkus.io/guides/building-native-image[here].
+Native executables can provide a performance and memory usage improvement on some plattforms - especially useful when running an application on a docker container. Since the packaging to native executables requires a platform specific configuration of GraalVM, which would exceed the scope of this paper, you can find an easy step-by-step guide on how to do it link:https://quarkus.io/guides/building-native-image[here].
 
 ==== Building docker images
-How to build the specific docker images is explained in great detail in the autogenerated Dockerfiles seen here link:../chapter2/main.adoc#Project%20Structure[Project Structure]
+How to build the specific docker images is explained in great detail in the autogenerated Dockerfiles seen link:../chapter2/main.adoc#Project%20Structure[here]
 
 === Kubernetes Dev Service
-Lastly, Quarkus provides an out-of-the-box kubernetes test environment as a dev service, so one does not have to start a cluster manually. Just add the dev service to your project using the command ``./mvnw quarkus:add-extension -Dextensions='kubernetes-client'`` to add the kubernetes extension. The dev service will automatically be enabled as long as the API server address has not been explicitly configured (also making the transition to production easier - no extension switching, just adding the address). You could also add the dependency into the pom.xml by hand, this command just does it for you.
+Lastly, Quarkus provides an out-of-the-box kubernetes test environment as a Dev Service, thus removing the need to start a cluster manually. Just add the dev service to your project using the command 
+
+``./mvnw quarkus:add-extension -Dextensions='kubernetes-client'`` 
+
+to add the kubernetes extension. The dev service will automatically be enabled as long as the API server address has not been explicitly configured (also making the transition to production easier - no extension switching, just adding the address). You could also add the dependency into the pom.xml by hand, this command just does it for you.
 
 After installing this, your application is officially running on a kubernetes cluster!
 
 Here you can find some additional information about the link:https://quarkus.io/guides/kubernetes-dev-services[Kubernetes Dev Service] and the link:https://quarkus.io/guides/kubernetes-client[Kubernetes Client] (for production-ready use of Kubernetes)
 
 ==== If Kubernetes is not starting
-If you do not find this line in your output:
+If you do not find these lines in your output:
 
 image::../images/chapter3/kubernetes.JPG[]
 

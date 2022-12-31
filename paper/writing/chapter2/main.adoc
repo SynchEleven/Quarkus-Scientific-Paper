@@ -14,6 +14,8 @@ It is heavily inspired by link:https://quarkus.io/guides/getting-started-reactiv
 - Maven 3.8.6
 - Docker Desktop installed and running 
 
+<<<
+
 === Setup
 
 ==== Quarkus CLI
@@ -24,7 +26,7 @@ The Quarkus dev-mode allows the developer to test Quarkus applications in a fast
 
 There are different ways to start quarkus dev mode:
 
-1. Through the development environment: Most widely popular IDEs have integrations for quarkus which start  automatically into dev mode
+1. Through the development environment: Most widely popular IDEs have integrations for Quarkus which start  automatically into dev mode
 
 2. Through Quarkus CLI: with the ``quarkus dev`` command scoped in the project root directory
 
@@ -36,14 +38,12 @@ In this demonstration we are going to create a very simple reactive Quarkus appl
 This project assumes that you have already made a project with Endpoints in Java, as none of the "usual" annotations and processes are explained further.
 
 ==== Project setup
-Quarkus projects can be created using an IDE, the Quarkus Initializer website, or the Quarkus CLI. IntelliJ, used for this demonstration, offers an in-built Quarkus initializer and easy dependency selection, just like the Initializer website that generates a bootstrapped project similar to the Spring Initializer for Spring projects. The Quarkus CLI, which is less recommended, requires specifying dependencies by hand and is therefore tedious and prone to errors.
+Quarkus projects can be created using an IDE, the link:https://code.quarkus.io/[Quarkus Initializer] website, or the Quarkus CLI. IntelliJ, used for this demonstration, offers an in-built Quarkus initializer and easy dependency selection, just like the Initializer website that generates a bootstrapped project similar to the Spring Initializer for Spring projects. The Quarkus CLI, which is less recommended, requires specifying dependencies by hand and is therefore tedious and prone to errors.
 
 ===== Configuration
 In IntelliJ, click on create new Project and select the Quarkus preset:
 
-You have some configuration options here that are the same as with every other Java project. The demonstration projet is called "quarkus-introduction" with group "org.acme" and uses JDK 19 with Maven.
-
-Additionally you can select if you want sample code or not. For starters I would recommend enabling this, since it creates some folders with the right structure, as well as some controllers for an easier learning experience.
+You have some configuration options here that are the same as with every other Java project. The demonstration project is called "quarkus-introduction" with group "org.acme" and uses JDK 19 with Maven. Additionally you can select if you want sample code created or not. For starters I would recommend enabling this, since it creates some folders with the right structure, as well as some controllers for an easier learning experience.
 
 ===== Extensions
 After clicking "Next" you are presented with a list of possible extensions, which you can use in your new Quarkus project. These are basically just maven dependencies so don't worry if you miss one here, you can add them in later by hand (or by using Maven / Quarkus CLI) as well.
@@ -58,7 +58,7 @@ For this demonstration we are going to be using:
 When creating a project, Quarkus automatically creates a README.md that contains informations and simple guides about the operation of Quarkus and the extension you added. We will cover some of those steps in this demonstration as well.
 
 ===== Project Structure
-The created project structure should be familiar to most Java developers. A main and test folder were created with just some sample code which is executable. But Quarkus did not only create the standard folders but also automatically created a docker folder containing the necessary Dockerfiles to run the application in a container. 
+The created project structure should be familiar to most Java developers. A main and test folder are created with just some sample code which is executable. But Quarkus did not only create the standard folders, but also automatically created a docker folder containing the necessary Dockerfiles to run the application in a container. In those Dockerfiles are also detailed descriptions of how to setup and build the application so that it can be package into a image.  
 
 image::../images/chapter2/project_structure.JPG[structure, width=35%]
 
@@ -69,10 +69,20 @@ image::../images/chapter2/start_project.JPG[start_project]
 
 Now you should be able to see the Quarkus interface on http://localhost:8080/
 
-==== Interface
-Quarkus generates an interface for the developer for easier debugging and navigation. Especially helpul are the available Paths on the bottom left hand side and the Dev UI -> reached by clicking the "Visit the Dev UI" button.
+<<<
 
-The "Dev UI" is a very handy feature when using Quarkus. One can manage bascially everything needed for configuring and debugging their application on it. Going into detail about every feature would exceed the scope of this paper but one can run tests, reset databases, look at endpoints and beans currently in the dependency injection and much more. It therefore, together with the automatic code reload, enables the developer to keep the application running and see the changes instantly without having to restart it constantly.
+==== Interface
+Quarkus generates an interface for the developer for easier debugging and navigation. Especially helpul are the available Paths on the bottom left hand side and the Dev UI - reached by clicking the "Visit the Dev UI" button.
+
+The "Dev UI" is a very handy feature when using Quarkus. One can manage bascially everything needed for configuring and debugging their application on it. Going into detail about every feature would exceed the scope of this paper but one can run tests, reset databases, look at endpoints and beans currently in the dependency injection and much more. It therefore, together with the automatic code reload, enables the developer to keep track of everything happening inside the application while it is running and see the changes instantly without having to restart it constantly. I would recommend to have a look around this interface and see what is possible. (One can even link:https://quarkus.io/guides/dev-ui[create their own extensions] with more application specific elements for this UI)
 
 ==== The First Endpoint
-Now, with the application up and running, we can take also take a look at the first autogenerated endpoint at http://localhost:8080/hello. You should get the text "Hello from RESTEasy Reactive" back. To check if the auto code reload works, try to change the return text in your src/main/java/org/acme/ExampleResource.java to something different like "Hola from RESTEasy Reactive". You should instantly get that new text after refreshing the localhost page. If this works you can move on to the next part. If this does not work, I would recommend restarting the dev mode or checking if your setup in the previous steps was done correctly.
+Now, with the application up and running, we can take also take a look at the first autogenerated endpoint at http://localhost:8080/hello. You should get the text "Hello from RESTEasy Reactive" back. 
+
+To check if the auto code reload works, try to change the return text in your src/main/java/org/acme/ExampleResource.java to something different like "Hola from RESTEasy Reactive". You should instantly get that new text after refreshing the localhost page. 
+
+****
+If this works, you can move on to the next part. 
+****
+
+If this does not work, I would recommend restarting the dev mode or checking if your setup in the previous steps was done correctly.

@@ -12,4 +12,8 @@ Writing Tools::
 
 Font:: https://fonts.google.com/specimen/Roboto[Roboto], Apache License 2.0
 
-Another Source:: My text
+Another Source:: 
+- https://quarkus.io/ Apache License 2.0
+- https://quarkus.io/guides/ Apache License 2.0
+- https://code.quarkus.io/ Apache License 2.0
+- https://lordofthejars.github.io/quarkus-cheat-sheet/#_vert_x_filters_and_routes
